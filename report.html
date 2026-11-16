@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h1>{{ title }}</h1>
+{% for heading, rows in sections %}
+<h3>{{ heading }}</h3>
+<table>
+  {% if rows %}
+  <tr>{% for k in rows[0] %}<th>{{ k }}</th>{% endfor %}</tr>
+  {% for r in rows %}
+  <tr>{% for v in r.values() %}<td>{{ v if v is not none else '-' }}</td>{% endfor %}</tr>
+  {% endfor %}
+  {% else %}<tr><td>No results.</td></tr>{% endif %}
+</table>
+{% endfor %}
+{% endblock %}

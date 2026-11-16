@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Library: Books, Authors, Members and Loans</h1>
+<p>Data stored in the <code>libraryDB</code> database.</p>
+<p>
+  <a class="btn" href="{{ url_for('search') }}">Search books</a>
+  <a class="btn" href="{{ url_for('catalogue') }}">Catalogue</a>
+  <a class="btn" href="{{ url_for('reports') }}">Reports</a>
+  <a class="btn" href="{{ url_for('loans') }}">Loans</a>
+  <a class="btn" href="{{ url_for('most_borrowed') }}">Most borrowed</a>
+  <a class="btn" href="{{ url_for('authors_books') }}">Authors &amp; books</a>
+</p>
+<p>
+  <a class="btn" href="{{ url_for('books') }}">Manage books</a>
+  <a class="btn" href="{{ url_for('authors') }}">Manage authors</a>
+</p>
+{% endblock %}

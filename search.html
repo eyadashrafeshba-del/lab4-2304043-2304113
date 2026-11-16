@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Search books{% endblock %}
+{% block content %}
+<h1>Search books</h1>
+<form method="get">
+  <label>Title keyword <input name="keyword" value="{{ form.get('keyword', '') }}"></label>
+  <label>Minimum price <input name="min_price" type="number" step="0.01" min="0" value="{{ form.get('min_price', '') }}"></label>
+  <label>Maximum price <input name="max_price" type="number" step="0.01" min="0" value="{{ form.get('max_price', '') }}"></label>
+  <label>Category
+    <select name="category_id">
+      <option value="">-- all --</option>
+      {% for c in categories %}
+      <option value="{{ c.category_id }}" {% if form.get('category_id') == c.category_id|string %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <button class="btn">Search</button>
+</form>
+{% if rows is not none %}
+<h3>Results (cheapest first)</h3>
+<table>
+  <tr><th>book_id</th><th>Title</th><th>Price</th></tr>
+  {% for b in rows %}
+  <tr><td>{{ b.book_id }}</td><td>{{ b.title }}</td><td>{{ '%.2f'|format(b.price) }}</td></tr>
+  {% else %}<tr><td colspan="3">No matching books.</td></tr>{% endfor %}
+</table>
+{% endif %}
+{% endblock %}
